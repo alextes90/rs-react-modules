@@ -1,0 +1,28 @@
+.header {
+  max-width: 60rem;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.list {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  margin: auto;
+}
+
+.link {
+  text-decoration: none;
+  color: coral;
+  &:hover {
+    color: rgb(194, 71, 26);
+    transition: 0.3s ease-out;
+  }
+}
+
+.active {
+  text-decoration: none;
+  color: rgb(194, 71, 26);
+  font-weight: bold;
+}

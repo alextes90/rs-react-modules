@@ -1,13 +1,32 @@
-function App() {
-  return (
-    <h1
-      id="dinasur_name"
-      className="dinasaur_name"
-      aria-describedby="dinosaur_name_info"
-    >
-      Hello World!
-    </h1>
-  );
+/* eslint-disable react/prefer-stateless-function */
+import React from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { LINKS } from './const';
+import Header from './layouts/header/Header';
+import AboutUs from './pages/aboutUs/AboutUs';
+import ErrorPage from './pages/errorPage/ErrorPage';
+
+const router = createBrowserRouter([
+  {
+    path: LINKS.Main,
+    element: <Header />,
+    children: [
+      {
+        path: LINKS['About Us'],
+        element: <AboutUs />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
+      },
+    ],
+  },
+]);
+
+class App extends React.Component {
+  render() {
+    return <RouterProvider router={router} />;
+  }
 }
 
 export default App;
