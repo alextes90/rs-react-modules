@@ -22,5 +22,5 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 0,
   },
-  ignorePatterns: ['.eslintrc.cjs', 'dist', 'vite.config.ts'],
+  ignorePatterns: ['.eslintrc.cjs', 'dist', 'vite.config.ts', 'coverage'],
 };
