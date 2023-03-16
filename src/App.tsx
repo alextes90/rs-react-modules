@@ -5,7 +5,7 @@ import { LINKS } from './const';
 import Header from './layouts/header/Header';
 import AboutUs from './pages/aboutUsPage/AboutUs';
 import ErrorPage from './pages/errorPage/ErrorPage';
-import MainPage from './pages/mainPage/mainPage';
+import MainPage from './pages/mainPage/MainPage';
 
 const router = createBrowserRouter([
   {
