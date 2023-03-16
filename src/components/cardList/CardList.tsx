@@ -2,23 +2,11 @@
 import React from 'react';
 import CardItem from '../cardItem/CardItem';
 import styles from './CardList.module.scss';
+import { Country } from '../../interfaces/interfaces';
+import result from './utilfunction';
 
 interface CardListProps {
   [key: string]: string;
-}
-
-const BASE_URL =
-  'https://restcountries.com/v3.1/all?fields=name,flags,currencies,timezones,area,capital,region,population';
-
-interface Country {
-  flags: { png: string; svg: string; alt: string };
-  name: { common: string; official: string };
-  currencies: { name: string; symbol: string };
-  capital: string[];
-  region: string;
-  area: number;
-  population: number;
-  timezones: string[];
 }
 
 class CardList extends React.Component<
@@ -32,12 +20,11 @@ class CardList extends React.Component<
 
   componentDidMount() {
     (async () => {
-      const data = await fetch(BASE_URL);
-      const result = await data.json();
-      const resultToShow = result.filter(
-        (el: Country, index: number) => index < 12
-      );
-      this.setState({ cardList: resultToShow, loading: false });
+      const resultToShow = await result();
+      this.setState({
+        cardList: resultToShow,
+        loading: false,
+      });
     })();
   }
 

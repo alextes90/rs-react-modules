@@ -1,17 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import styles from './CardItem.module.scss';
-
-interface Country {
-  flags: { png: string; svg: string; alt: string };
-  name: { common: string; official: string };
-  currencies: { name: string; symbol: string };
-  capital: string[];
-  region: string;
-  area: number;
-  population: number;
-  timezones: string[];
-}
+import { Country } from '../../interfaces/interfaces';
 
 class CardItem extends React.Component<Country> {
   render() {
