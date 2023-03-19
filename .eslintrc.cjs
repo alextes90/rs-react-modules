@@ -24,6 +24,14 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'react/prop-types': 'off',
+    'react/display-name': 'off',
+  },
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
   },
   ignorePatterns: ['.eslintrc.cjs', 'dist', 'vite.config.ts', 'coverage'],
 };

@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+
 export interface Country {
   flags: { png: string; svg: string; alt: string };
   name: { common: string; official: string };
@@ -7,4 +9,10 @@ export interface Country {
   area: number;
   population: number;
   timezones: string[];
+}
+
+export interface WithRouterProps {
+  location: ReturnType<typeof useLocation>;
+  params: Record<string, string>;
+  navigate: ReturnType<typeof useNavigate>;
 }
