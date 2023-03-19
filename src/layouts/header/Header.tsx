@@ -9,27 +9,32 @@ import { WithRouterProps } from '../../interfaces/interfaces';
 class Header extends React.Component<WithRouterProps> {
   render() {
     const { location } = this.props;
+    const pageToDisplay =
+      Object.entries(LINKS).find(([, val]) => {
+        let checker = val;
+        if (val.length > 1) {
+          checker = `/${val}`;
+        }
+        return location.pathname === checker;
+      }) || '';
     return (
       <>
         <header className={styles.header}>
           <div>
-            <div>
-              Current Page:{' '}
-              {location.pathname === LINKS.Main ? 'Main' : 'About Us'}
-            </div>
+            <div>Current Page: {pageToDisplay[0] || '404'}</div>
             <nav>
               <ul className={styles.list}>
-                {Object.entries(LINKS).map((link) => {
+                {Object.entries(LINKS).map(([key, val]) => {
                   return (
-                    <li key={link[0]}>
+                    <li key={key}>
                       <NavLink
                         className={({ isActive }) =>
                           isActive ? styles.active : styles.link
                         }
-                        to={link[1]}
+                        to={val}
                         end
                       >
-                        {link[0]}
+                        {key}
                       </NavLink>
                     </li>
                   );
