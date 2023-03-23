@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export interface Country {
   flags: { png: string; svg: string; alt: string };
-  name: { common: string; official: string };
+  name: string;
   currencies: { name: string; symbol: string };
   capital: string[];
   region: string;

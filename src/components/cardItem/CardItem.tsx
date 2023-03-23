@@ -5,13 +5,18 @@ import { Country } from '../../interfaces/interfaces';
 
 class CardItem extends React.Component<Country> {
   render() {
-    const { flags, name, capital, region, area, population } = this.props;
+    const { flags, name, capital, region, area, population, currencies } =
+      this.props;
     return (
       <div className={styles.wrapper}>
         <img className={styles.img} src={flags.svg} alt={flags.alt} />
         <div className={styles.text}>
+          <b>Flag Description </b>
+          {flags.alt}
+        </div>
+        <div className={styles.text}>
           <b>Official Name: </b>
-          {name.official}
+          {name}
         </div>
         <div className={styles.text}>
           <b>Capital: </b>
@@ -28,6 +33,10 @@ class CardItem extends React.Component<Country> {
         <div className={styles.text}>
           <b>Region: </b>
           {region}
+        </div>
+        <div className={styles.text}>
+          <b>Currency: </b>
+          {currencies.name} | {currencies.symbol}
         </div>
       </div>
     );

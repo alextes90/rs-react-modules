@@ -1,0 +1,208 @@
+const COUNTRY_DATA = [
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/gt.png',
+      svg: 'https://flagcdn.com/gt.svg',
+      alt: 'The flag of Guatemala is composed of three equal vertical bands of light blue, white and light blue, with the national coat of arms centered in the white band.',
+    },
+    name: 'Guatemala',
+    currencies: {
+      name: 'Guatemalan quetzal',
+      symbol: 'Q',
+    },
+    capital: ['Guatemala City'],
+    region: 'Americas',
+    area: 108889.0,
+    population: 16858333,
+    timezones: ['UTC-06:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/sg.png',
+      svg: 'https://flagcdn.com/sg.svg',
+      alt: 'The flag of Singapore is composed of two equal horizontal bands of red and white. On the hoist side of the red band is a fly-side facing white crescent which partially encloses five small five-pointed white stars arranged in the shape of a pentagon.',
+    },
+    name: 'Singapore',
+    currencies: {
+      name: 'Singapore dollar',
+      symbol: '$',
+    },
+    capital: ['Singapore'],
+    region: 'Asia',
+    area: 710.0,
+    population: 5685807,
+    timezones: ['UTC+08:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/ba.png',
+      svg: 'https://flagcdn.com/ba.svg',
+      alt: 'The flag of Bosnia and Herzegovina has a blue field, at the center of which is a large yellow hoist-side facing right-angled triangle that is based on the top edge and spans the height of the field. Adjacent to the hypotenuse of this triangle are nine adjoining five-pointed white stars with the top and bottom stars cut in half by the edges of the field.',
+    },
+    name: 'Bosnia and Herzegovina',
+    currencies: {
+      name: 'Bosnia and Herzegovina convertible mark',
+      symbol: '',
+    },
+    capital: ['Sarajevo'],
+    region: 'Europe',
+    area: 51209.0,
+    population: 3280815,
+    timezones: ['UTC+01:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/mv.png',
+      svg: 'https://flagcdn.com/mv.svg',
+      alt: 'The flag of Maldives has a red field, at the center of which is a large green rectangle bearing a fly-side facing white crescent.',
+    },
+    name: 'Maldives',
+    currencies: {
+      name: 'Maldivian rufiyaa',
+      symbol: '.ރ',
+    },
+    capital: ['Malé'],
+    region: 'Asia',
+    area: 300.0,
+    population: 540542,
+    timezones: ['UTC+05:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/lv.png',
+      svg: 'https://flagcdn.com/lv.svg',
+      alt: 'The flag of Latvia has a carmine-red field with a thin white horizontal band across the middle of the field.',
+    },
+    name: 'Latvia',
+    currencies: {
+      name: 'Euro',
+      symbol: '€',
+    },
+    capital: ['Riga'],
+    region: 'Europe',
+    area: 64559.0,
+    population: 1901548,
+    timezones: ['UTC+02:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/gr.png',
+      svg: 'https://flagcdn.com/gr.svg',
+      alt: 'The flag of Greece is composed of nine equal horizontal bands of blue alternating with white. A blue square bearing a white cross is superimposed in the canton.',
+    },
+    name: 'Greece',
+    currencies: {
+      name: 'Euro',
+      symbol: '€',
+    },
+    capital: ['Athens'],
+    region: 'Europe',
+    area: 131990.0,
+    population: 10715549,
+    timezones: ['UTC+02:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/cc.png',
+      svg: 'https://flagcdn.com/cc.svg',
+      alt: '',
+    },
+    name: 'Cocos (Keeling) Islands',
+    currencies: {
+      name: 'Australian dollar',
+      symbol: '$',
+    },
+    capital: ['West Island'],
+    region: 'Oceania',
+    area: 14.0,
+    population: 544,
+    timezones: ['UTC+06:30'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/yt.png',
+      svg: 'https://flagcdn.com/yt.svg',
+      alt: '',
+    },
+    name: 'Mayotte',
+    currencies: {
+      name: 'Euro',
+      symbol: '€',
+    },
+    capital: ['Mamoudzou'],
+    region: 'Africa',
+    area: 374.0,
+    population: 226915,
+    timezones: ['UTC+03:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/jo.png',
+      svg: 'https://flagcdn.com/jo.svg',
+      alt: 'The flag of Jordan is composed of three equal horizontal bands of black, white and green, with a red isosceles triangle superimposed on the hoist side of the field. This triangle has its base on the hoist end, spans about half the width of the field and bears a small seven-pointed white star at its center.',
+    },
+    name: 'Jordan',
+    currencies: {
+      name: 'Jordanian dinar',
+      symbol: 'د.ا',
+    },
+    capital: ['Amman'],
+    region: 'Asia',
+    area: 89342.0,
+    population: 10203140,
+    timezones: ['UTC+03:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/bd.png',
+      svg: 'https://flagcdn.com/bd.svg',
+      alt: 'The flag of Bangladesh has a dark green field bearing a large red circle that is offset slightly towards the hoist side of center.',
+    },
+    name: 'Bangladesh',
+    currencies: {
+      name: 'Bangladeshi taka',
+      symbol: '৳',
+    },
+    capital: ['Dhaka'],
+    region: 'Asia',
+    area: 147570.0,
+    population: 164689383,
+    timezones: ['UTC+06:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/as.png',
+      svg: 'https://flagcdn.com/as.svg',
+      alt: '',
+    },
+    name: 'American Samoa',
+    currencies: {
+      name: 'United States dollar',
+      symbol: '$',
+    },
+    capital: ['Pago Pago'],
+    region: 'Oceania',
+    area: 199.0,
+    population: 55197,
+    timezones: ['UTC-11:00'],
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/it.png',
+      svg: 'https://flagcdn.com/it.svg',
+      alt: 'The flag of Italy is composed of three equal vertical bands of green, white and red.',
+    },
+    name: 'Italy',
+    currencies: {
+      name: 'Euro',
+      symbol: '€',
+    },
+    capital: ['Rome'],
+    region: 'Europe',
+    area: 301336.0,
+    population: 59554023,
+    timezones: ['UTC+01:00'],
+  },
+];
+
+export default COUNTRY_DATA;

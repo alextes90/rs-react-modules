@@ -3,46 +3,19 @@ import React from 'react';
 import CardItem from '../cardItem/CardItem';
 import styles from './CardList.module.scss';
 import { Country } from '../../interfaces/interfaces';
-import { result } from './utilfunction';
-
-interface CardListProps {
-  [key: string]: string;
-}
+import COUNTRY_DATA from './data';
 
 class CardList extends React.Component<
-  CardListProps,
-  { cardList: Country[]; loading: boolean; error: boolean }
+  Record<string, never>,
+  { cardList: Country[] }
 > {
-  constructor(props: CardListProps) {
+  constructor(props: Record<string, never>) {
     super(props);
-    this.state = { cardList: [], loading: true, error: false };
-  }
-
-  componentDidMount() {
-    (async () => {
-      try {
-        const resultToShow = await result();
-        this.setState({
-          cardList: resultToShow,
-          loading: false,
-        });
-      } catch (err) {
-        this.setState({
-          error: true,
-        });
-      }
-    })();
+    this.state = { cardList: COUNTRY_DATA };
   }
 
   render() {
-    const { cardList, loading, error } = this.state;
-    if (loading) {
-      return <div className={styles.loading}>loading...</div>;
-    }
-
-    if (error) {
-      return <div className={styles.loading}> Error occurred</div>;
-    }
+    const { cardList } = this.state;
     return (
       <div className={styles['card-list']}>
         {cardList.map(
