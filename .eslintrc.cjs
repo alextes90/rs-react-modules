@@ -26,6 +26,8 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/prop-types': 'off',
     'react/display-name': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'react/prefer-stateless-function': 0,
   },
   settings: {
     react: {
