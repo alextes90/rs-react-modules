@@ -3,14 +3,13 @@ import React from 'react';
 import styles from './SearchBar.module.scss';
 import searchIcon from '../../assets/search.svg';
 
-interface SearchBarProps {
-  [key: string]: string;
-}
-
 const STORAGE_KEY = 'ATLOCAL_INPUT';
 
-class SearchBar extends React.Component<SearchBarProps, { inputVal: string }> {
-  constructor(props: SearchBarProps) {
+class SearchBar extends React.Component<
+  Record<string, never>,
+  { inputVal: string }
+> {
+  constructor(props: Record<string, never>) {
     super(props);
     const value = localStorage.getItem(STORAGE_KEY);
     this.state = { inputVal: value || '' };

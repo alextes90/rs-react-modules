@@ -3,13 +3,13 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { LINKS } from '../../const';
 import styles from './Header.module.scss';
-import withRouterHOC from './withRouterHOC';
+import withRouterHOC from '../../hoc/withRouterHOC';
 import { WithRouterProps } from '../../interfaces/interfaces';
 
 class Header extends React.Component<WithRouterProps> {
   render() {
     const { location } = this.props;
-    const pageToDisplay =
+    const [pageToDisplay] =
       Object.entries(LINKS).find(([, val]) => {
         let checker = val;
         if (val.length > 1) {
@@ -21,7 +21,7 @@ class Header extends React.Component<WithRouterProps> {
       <>
         <header className={styles.header}>
           <div>
-            <div>Current Page: {pageToDisplay[0] || '404'}</div>
+            <div>Current Page: {pageToDisplay || '404'}</div>
             <nav>
               <ul className={styles.list}>
                 {Object.entries(LINKS).map(([key, val]) => {

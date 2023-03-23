@@ -6,6 +6,7 @@ import Header from './layouts/header/Header';
 import AboutUs from './pages/aboutUsPage/AboutUs';
 import ErrorPage from './pages/errorPage/ErrorPage';
 import MainPage from './pages/mainPage/MainPage';
+import Forms from './components/forms/Forms';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: LINKS['About Us'],
         element: <AboutUs />,
+      },
+      {
+        path: LINKS.Forms,
+        element: <Forms />,
       },
       {
         path: '*',
