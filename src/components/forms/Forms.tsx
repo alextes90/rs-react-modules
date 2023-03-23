@@ -26,6 +26,8 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
 
   isMailingRef: React.RefObject<HTMLInputElement> | undefined;
 
+  formRef: React.RefObject<HTMLFormElement>;
+
   constructor(props: Record<string, never>) {
     super(props);
 
@@ -35,6 +37,7 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
     this.dateRef = React.createRef();
     this.regionRef = React.createRef();
     this.isMailingRef = React.createRef();
+    this.formRef = React.createRef();
     this.state = {
       name: ' ',
       date: ' ',
@@ -66,6 +69,7 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
         file: null,
         update: false,
       });
+      this.formRef.current?.reset();
     }
     console.log(Object.values(this.state));
   }
@@ -110,7 +114,7 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
     const { name, date, gender } = this.state;
     return (
       <div className={styles.wrapper}>
-        <form className={styles.form}>
+        <form className={styles.form} ref={this.formRef}>
           <div>
             <label className={styles.label_name}>
               Personal name
