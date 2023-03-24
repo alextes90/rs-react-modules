@@ -57,7 +57,7 @@ describe('Forms', () => {
     render(<Forms />);
     const checkbox = screen.getByRole('checkbox') as HTMLInputElement;
     await userEvent.click(checkbox);
-    expect(checkbox.checked).toBe(true);
+    expect(checkbox).toBeChecked();
   });
   it('Test if Male radio button is chosen', async () => {
     render(<Forms />);
@@ -65,7 +65,7 @@ describe('Forms', () => {
       name: 'Male',
     }) as HTMLInputElement;
     await userEvent.click(radioMale);
-    expect(radioMale.checked).toBe(true);
+    expect(radioMale).toBeChecked();
   });
   it('Test card is added', async () => {
     render(<Forms />);

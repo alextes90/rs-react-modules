@@ -77,8 +77,8 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
           isAdded: false,
           id: Date.now(),
         });
+        this.formRef.current?.reset();
       }, 1500);
-      this.formRef.current?.reset();
     }
   }
 

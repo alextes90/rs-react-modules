@@ -23,10 +23,12 @@ class FormCard extends React.Component<FormCardProps> {
             <div>NO IMAGE :(</div>
           )}
         </div>
-        <div>Your name: {name}</div>
-        <div>Your gender: {gender}</div>
-        <div>Your birthday: {date}</div>
-        <div>Mailing: {isMailing ? 'yes' : 'no'}</div>
+        <div>
+          <div>Your name: {name}</div>
+          <div>Your gender: {gender}</div>
+          <div>Your birthday: {date}</div>
+          <div>Mailing: {isMailing ? 'yes' : 'no'}</div>
+        </div>
       </div>
     );
   }
