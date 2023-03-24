@@ -5,25 +5,10 @@ export const NORFOLK_ISLAND = {
     svg: 'https://flagcdn.com/nf.svg',
     alt: '',
   },
-  name: {
-    common: 'Norfolk Island',
-    official: 'Territory of Norfolk Island',
-    nativeName: {
-      eng: {
-        official: 'Territory of Norfolk Island',
-        common: 'Norfolk Island',
-      },
-      pih: {
-        official: "Teratri of Norf'k Ailen",
-        common: "Norf'k Ailen",
-      },
-    },
-  },
+  name: 'Norfolk Island',
   currencies: {
-    AUD: {
-      name: 'Australian dollar',
-      symbol: '$',
-    },
+    name: 'Australian dollar',
+    symbol: '$',
   },
   capital: ['Kingston'],
   region: 'Oceania',

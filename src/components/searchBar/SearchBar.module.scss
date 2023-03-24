@@ -17,11 +17,10 @@
     outline: none;
     border: $color-hover solid 2px;
   }
-}
-
-::placeholder {
-  color: $color-prime;
-  opacity: 0.5;
+  &::placeholder {
+    color: $color-prime;
+    opacity: 0.5;
+  }
 }
 
 .img {

@@ -1,0 +1,55 @@
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
+import Header from './layouts/header/Header';
+
+const routes = [
+  {
+    path: '/',
+    element: <Header />,
+    children: [
+      {
+        path: '',
+        element: <div>Main Page</div>,
+      },
+      {
+        path: '/about',
+        element: <div>About</div>,
+      },
+      {
+        path: '/forms',
+        element: <div>Forms</div>,
+      },
+      {
+        path: '*',
+        element: <div>Error</div>,
+      },
+    ],
+  },
+];
+
+const router = createMemoryRouter(routes, {
+  initialEntries: ['/about'],
+});
+
+describe('Router', () => {
+  it('Renders about page', async () => {
+    render(<RouterProvider router={router} />);
+    expect(screen.getByText(/Current Page: About Us/i)).toBeInTheDocument();
+  });
+  it('Render another page on click', async () => {
+    render(<RouterProvider router={router} />);
+    const mainLink = screen.getByText(/main/i);
+    await userEvent.click(mainLink);
+    expect(screen.getByText(/Current Page: Main/i)).toBeInTheDocument();
+  });
+  it('Render 404 if wrong path', async () => {
+    render(<RouterProvider router={router} />);
+    await act(async () => {
+      router.navigate('/asdasd');
+    });
+    expect(await screen.findByText(/Current Page: 404/i)).toBeInTheDocument();
+  });
+});

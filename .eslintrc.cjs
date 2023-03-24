@@ -24,10 +24,11 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
   rules: {
     'react/react-in-jsx-scope': 0,
-    'react/prop-types': 'off',
-    'react/display-name': 'off',
-    'jsx-a11y/label-has-associated-control': 'off',
+    'react/prop-types': 0,
+    'react/display-name': 0,
+    'jsx-a11y/label-has-associated-control': 0,
     'react/prefer-stateless-function': 0,
+    'react/no-did-update-set-state': 0,
   },
   settings: {
     react: {

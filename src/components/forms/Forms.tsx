@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-update-set-state */
 import React from 'react';
 import styles from './Forms.module.scss';
 import OPTION_DATA, { GENDER_DATA } from './formsData';
@@ -140,6 +139,7 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
                   ref={this.nameRef}
                   className={styles.input_name}
                   type="text"
+                  placeholder="Your Name"
                 />
               </label>
               {name ? (
