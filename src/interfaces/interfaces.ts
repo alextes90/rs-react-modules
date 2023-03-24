@@ -16,3 +16,13 @@ export interface WithRouterProps {
   params: Record<string, string>;
   navigate: ReturnType<typeof useNavigate>;
 }
+
+export interface Card {
+  name: string;
+  date: string;
+  region: string;
+  isMailing: boolean;
+  gender: string;
+  file: File | null;
+  id: number;
+}

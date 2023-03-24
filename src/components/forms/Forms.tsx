@@ -2,18 +2,13 @@
 import React from 'react';
 import styles from './Forms.module.scss';
 import OPTION_DATA, { GENDER_DATA } from './formsData';
-
-interface Card {
-  name: string;
-  date: string;
-  region: string;
-  isMailing: boolean;
-  gender: string;
-  update: boolean;
-  file: File | null;
-}
+import { Card } from '../../interfaces/interfaces';
+import FormCard from '../formCard/FormCard';
+import Success from '../snackbar/success/Success';
 
 interface FormStates extends Card {
+  isAdded: boolean;
+  isUpdated: boolean;
   addedCard: Card[];
 }
 
@@ -45,33 +40,47 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
       isMailing: false,
       gender: ' ',
       file: null,
-      update: false,
+      isUpdated: false,
+      id: 0,
+      isAdded: false,
       addedCard: [],
     };
   }
 
   componentDidUpdate() {
     const noError = Object.values(this.state).findIndex((el) => el === '');
-    const { name, date, region, isMailing, gender, file, addedCard, update } =
-      this.state;
-    if (noError === -1 && update) {
+    const {
+      name,
+      date,
+      region,
+      isMailing,
+      gender,
+      file,
+      addedCard,
+      isUpdated,
+      id,
+    } = this.state;
+    if (noError === -1 && isUpdated) {
       const newAddedCardArr = [
         ...addedCard,
-        { name, date, region, isMailing, gender, file, update },
+        { name, date, region, isMailing, gender, file, id },
       ];
-      this.setState({
-        addedCard: newAddedCardArr,
-        name: ' ',
-        date: ' ',
-        region: 'Europe',
-        isMailing: false,
-        gender: ' ',
-        file: null,
-        update: false,
-      });
+      this.setState({ isAdded: true, isUpdated: false });
+      setTimeout(() => {
+        this.setState({
+          addedCard: newAddedCardArr,
+          name: ' ',
+          date: ' ',
+          region: 'Europe',
+          isMailing: false,
+          gender: ' ',
+          file: null,
+          isAdded: false,
+          id: Date.now(),
+        });
+      }, 1500);
       this.formRef.current?.reset();
     }
-    console.log(Object.values(this.state));
   }
 
   onSubmitHandler(event: React.MouseEvent<HTMLButtonElement>) {
@@ -97,107 +106,134 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
     if (gender === ' ') {
       this.setState({ gender: '' });
     }
-    this.setState({ update: true });
+    this.setState({ isUpdated: true });
   }
 
   fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       this.setState({ file: event.target.files[0] });
+      this.setState({ isUpdated: false });
     }
   };
 
-  onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  onChangeHandler = (
+    event: React.MouseEvent<HTMLInputElement> & {
+      target: HTMLInputElement;
+    }
+  ) => {
     this.setState({ gender: event.target.value });
+    this.setState({ isUpdated: false });
   };
 
   render() {
-    const { name, date, gender } = this.state;
+    const { name, date, gender, addedCard, isAdded } = this.state;
     return (
-      <div className={styles.wrapper}>
-        <form className={styles.form} ref={this.formRef}>
-          <div>
-            <label className={styles.label_name}>
-              Personal name
-              <input
-                ref={this.nameRef}
-                className={styles.input_name}
-                type="text"
-              />
-            </label>
-            {name ? (
-              ''
-            ) : (
-              <div className={styles.error}>
-                Please start you name with Upper Case and then click submit
-                button again
-              </div>
-            )}
-          </div>
-          <div>
-            <label>
-              Date of birth <input type="date" ref={this.dateRef} />
-            </label>
-            {date ? (
-              ''
-            ) : (
-              <div className={styles.error}>
-                Please chose the date and then click submit button again
-              </div>
-            )}
-          </div>
-          <label>
-            Chose the region
-            <select ref={this.regionRef}>
-              {OPTION_DATA.map((region) => (
-                <option key={region} value={region}>
-                  {region}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Would you like to receive our mails
-            <input type="checkbox" ref={this.isMailingRef} />
-          </label>
-          <div>
-            Chose your gender
-            {GENDER_DATA.map((gen) => (
-              <label key={gen} className={styles.input_radio}>
-                {gen}
+      <>
+        {isAdded && <Success message="Card was successfully added" />}
+        <div className={styles.wrapper}>
+          <form className={styles.form} ref={this.formRef}>
+            <div>
+              <label className={styles.label_name}>
+                Personal name
                 <input
-                  name="gen"
-                  value={gen}
-                  type="radio"
-                  onChange={this.onChangeHandler}
+                  disabled={isAdded}
+                  ref={this.nameRef}
+                  className={styles.input_name}
+                  type="text"
                 />
               </label>
-            ))}
-            {gender ? (
-              ''
-            ) : (
-              <div className={styles.error}>
-                Please chose your gender and then click submit button again
-              </div>
-            )}
-          </div>
-          <label>
-            Upload your avatar
-            <input
-              type="file"
-              accept="image/png, image/jpeg"
-              onChange={this.fileHandler}
-              capture="environment"
-            />
-          </label>
-          <button
-            onClick={this.onSubmitHandler}
-            className={styles.form_button}
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+              {name ? (
+                ''
+              ) : (
+                <div className={styles.error}>
+                  Please start you name with Upper Case and then click submit
+                  button again
+                </div>
+              )}
+            </div>
+            <div>
+              <label>
+                Date of birth{' '}
+                <input disabled={isAdded} type="date" ref={this.dateRef} />
+              </label>
+              {date ? (
+                ''
+              ) : (
+                <div className={styles.error}>
+                  Please chose the date and then click submit button again
+                </div>
+              )}
+            </div>
+            <label>
+              Chose the region
+              <select ref={this.regionRef} disabled={isAdded}>
+                {OPTION_DATA.map((reg) => (
+                  <option key={reg} value={reg}>
+                    {reg}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Would you like to receive our mails
+              <input
+                type="checkbox"
+                ref={this.isMailingRef}
+                disabled={isAdded}
+              />
+            </label>
+            <div>
+              Chose your gender
+              {GENDER_DATA.map((gen) => (
+                <label key={gen} className={styles.input_radio}>
+                  {gen}
+                  <input
+                    disabled={isAdded}
+                    name="gen"
+                    value={gen}
+                    type="radio"
+                    onClick={this.onChangeHandler}
+                  />
+                </label>
+              ))}
+              {gender ? (
+                ''
+              ) : (
+                <div className={styles.error}>
+                  Please chose your gender and then click submit button again
+                </div>
+              )}
+            </div>
+            <label>
+              Upload your avatar
+              <input
+                disabled={isAdded}
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={this.fileHandler}
+                capture="environment"
+              />
+            </label>
+            <button
+              disabled={isAdded}
+              onClick={this.onSubmitHandler}
+              className={styles.form_button}
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className={styles['addedCard-wrapper']}>
+          {addedCard.length > 0 ? (
+            addedCard.map((card: Card) => (
+              <FormCard key={card.id} formData={card} />
+            ))
+          ) : (
+            <div>Please fill the form and add the card</div>
+          )}
+        </div>
+      </>
     );
   }
 }
