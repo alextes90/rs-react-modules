@@ -9,7 +9,7 @@ interface FormCardProps {
 class FormCard extends React.Component<FormCardProps> {
   render() {
     const { formData } = this.props;
-    const { name, file, isMailing, date, gender } = formData;
+    const { name, file, isMailing, date, gender, region } = formData;
     return (
       <div className={styles.wrapper}>
         <div>
@@ -27,6 +27,7 @@ class FormCard extends React.Component<FormCardProps> {
           <div>Your name: {name}</div>
           <div>Your gender: {gender}</div>
           <div>Your birthday: {date}</div>
+          <div>Your region: {region}</div>
           <div>Mailing: {isMailing ? 'yes' : 'no'}</div>
         </div>
       </div>

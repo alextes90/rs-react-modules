@@ -8,6 +8,8 @@ import Success from '../snackbar/success/Success';
 interface FormStates extends Card {
   isAdded: boolean;
   isUpdated: boolean;
+  isMailingNotChecked: boolean;
+  isFileNotChosen: boolean;
   addedCard: Card[];
 }
 
@@ -35,13 +37,15 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
     this.state = {
       name: ' ',
       date: ' ',
-      region: 'Europe',
+      region: ' ',
       isMailing: false,
       gender: ' ',
       file: null,
       isUpdated: false,
       id: 0,
       isAdded: false,
+      isFileNotChosen: false,
+      isMailingNotChecked: false,
       addedCard: [],
     };
   }
@@ -58,8 +62,15 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
       addedCard,
       isUpdated,
       id,
+      isMailingNotChecked,
+      isFileNotChosen,
     } = this.state;
-    if (noError === -1 && isUpdated) {
+    if (
+      noError === -1 &&
+      isUpdated &&
+      !isMailingNotChecked &&
+      !isFileNotChosen
+    ) {
       const newAddedCardArr = [
         ...addedCard,
         { name, date, region, isMailing, gender, file, id },
@@ -70,11 +81,13 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
           addedCard: newAddedCardArr,
           name: ' ',
           date: ' ',
-          region: 'Europe',
+          region: ' ',
           isMailing: false,
           gender: ' ',
           file: null,
           isAdded: false,
+          isFileNotChosen: false,
+          isMailingNotChecked: false,
           id: Date.now(),
         });
         this.formRef.current?.reset();
@@ -84,13 +97,14 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
 
   onSubmitHandler(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    const { gender } = this.state;
+    const { gender, file } = this.state;
     if (this.isMailingRef?.current?.checked) {
       this.setState({ isMailing: this.isMailingRef?.current?.checked });
-    }
+      this.setState({ isMailingNotChecked: false });
+    } else this.setState({ isMailingNotChecked: true });
     if (this.regionRef?.current?.value) {
       this.setState({ region: this.regionRef?.current?.value });
-    }
+    } else this.setState({ region: '' });
     if (this.dateRef?.current?.value) {
       this.setState({ date: this.dateRef?.current?.value });
     } else this.setState({ date: '' });
@@ -105,6 +119,9 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
     if (gender === ' ') {
       this.setState({ gender: '' });
     }
+    if (file) {
+      this.setState({ isFileNotChosen: false });
+    } else this.setState({ isFileNotChosen: true });
     this.setState({ isUpdated: true });
   }
 
@@ -125,7 +142,16 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
   };
 
   render() {
-    const { name, date, gender, addedCard, isAdded } = this.state;
+    const {
+      name,
+      date,
+      gender,
+      addedCard,
+      isAdded,
+      region,
+      isMailingNotChecked,
+      isFileNotChosen,
+    } = this.state;
     return (
       <>
         {isAdded && <Success message="Card was successfully added" />}
@@ -166,7 +192,10 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
             </div>
             <label>
               Chose the region
-              <select ref={this.regionRef} disabled={isAdded}>
+              <select ref={this.regionRef} disabled={isAdded} defaultValue="">
+                <option value="" disabled hidden>
+                  Choose here
+                </option>
                 {OPTION_DATA.map((reg) => (
                   <option key={reg} value={reg}>
                     {reg}
@@ -174,6 +203,11 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
                 ))}
               </select>
             </label>
+            {region ? (
+              ''
+            ) : (
+              <div className={styles.error}>Please chose the region</div>
+            )}
             <label>
               Would you like to receive our mails
               <input
@@ -182,6 +216,11 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
                 disabled={isAdded}
               />
             </label>
+            {!isMailingNotChecked ? (
+              ''
+            ) : (
+              <div className={styles.error}>Please agreed to receive mails</div>
+            )}
             <div>
               Chose your gender
               {GENDER_DATA.map((gen) => (
@@ -214,6 +253,11 @@ class Forms extends React.Component<Record<string, never>, FormStates> {
                 capture="environment"
               />
             </label>
+            {!isFileNotChosen ? (
+              ''
+            ) : (
+              <div className={styles.error}>Please upload jpg/png file</div>
+            )}
             <button
               disabled={isAdded}
               onClick={this.onSubmitHandler}

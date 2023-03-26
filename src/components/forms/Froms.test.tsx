@@ -3,6 +3,8 @@ import { describe, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Forms from './Forms';
 
+const file = new File(['hello'], 'hello.png', { type: 'image/png' });
+
 describe('Forms', () => {
   it('Input type work', async () => {
     render(<Forms />);
@@ -69,6 +71,7 @@ describe('Forms', () => {
   });
   it('Test card is added', async () => {
     render(<Forms />);
+
     const inputName = screen.getByLabelText(
       /personal name/i
     ) as HTMLInputElement;
@@ -78,8 +81,16 @@ describe('Forms', () => {
     const radioMale = screen.getByRole('radio', {
       name: 'Male',
     }) as HTMLInputElement;
+    const checkboxMailing = screen.getByRole('checkbox');
     const submitButton = screen.getByRole('button');
+    const optionSelection = screen.getByRole('combobox');
+    const inputFile = screen.getByText(
+      /upload your avatar/i
+    ) as HTMLInputElement;
+    await userEvent.selectOptions(optionSelection, ['Asia']);
+    await userEvent.upload(inputFile, file);
     await userEvent.click(radioMale);
+    await userEvent.click(checkboxMailing);
     await userEvent.type(inputDate, '1970-01-01');
     await userEvent.type(inputName, 'React');
     await userEvent.click(submitButton);
