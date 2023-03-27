@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { LINKS } from './const';

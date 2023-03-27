@@ -29,6 +29,8 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 0,
     'react/prefer-stateless-function': 0,
     'react/no-did-update-set-state': 0,
+    'react/function-component-definition': 0,
+    'react/jsx-props-no-spreading': 0,
   },
   settings: {
     react: {

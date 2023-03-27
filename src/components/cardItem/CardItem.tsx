@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import styles from './CardItem.module.scss';
 import { Country } from '../../interfaces/interfaces';

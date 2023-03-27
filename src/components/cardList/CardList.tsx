@@ -1,4 +1,3 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import CardItem from '../cardItem/CardItem';
 import styles from './CardList.module.scss';
