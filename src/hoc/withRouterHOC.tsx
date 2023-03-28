@@ -1,5 +1,3 @@
-/* eslint-disable react/function-component-definition */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { WithRouterProps } from '../interfaces/interfaces';
