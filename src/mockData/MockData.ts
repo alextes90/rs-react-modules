@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-export const NORFOLK_ISLAND = {
+const NORFOLK_ISLAND = {
   flags: {
     png: 'https://flagcdn.com/w320/nf.png',
     svg: 'https://flagcdn.com/nf.svg',
@@ -16,3 +15,5 @@ export const NORFOLK_ISLAND = {
   population: 2302,
   timezones: ['UTC+11:30'],
 };
+
+export default NORFOLK_ISLAND;

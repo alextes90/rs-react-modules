@@ -4,7 +4,7 @@ import { LINKS } from './const';
 import Header from './layouts/header/Header';
 import AboutUs from './pages/aboutUsPage/AboutUs';
 import ErrorPage from './pages/errorPage/ErrorPage';
-import MainPage from './pages/mainPage/MainPage';
+import MainPage from './pages/mainPage/SainPage';
 import Forms from './components/forms/Forms';
 
 const router = createBrowserRouter([
