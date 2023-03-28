@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import { NORFOLK_ISLAND } from '../../mockData/MockData';
+import NORFOLK_ISLAND from '../../mockData/MockData';
 import CardItem from './CardItem';
 
 const currency = { name: 'bar', symbol: 'foo' };
