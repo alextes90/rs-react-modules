@@ -2,7 +2,6 @@ import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import Header from './layouts/header/Header';
 
 const routes = [
@@ -34,6 +33,10 @@ const router = createMemoryRouter(routes, {
   initialEntries: ['/about'],
 });
 
+const badRout = createMemoryRouter(routes, {
+  initialEntries: ['/badrout'],
+});
+
 describe('Router', () => {
   it('Renders about page', async () => {
     render(<RouterProvider router={router} />);
@@ -46,10 +49,8 @@ describe('Router', () => {
     expect(screen.getByText(/Current Page: Main/i)).toBeInTheDocument();
   });
   it('Render 404 if wrong path', async () => {
-    render(<RouterProvider router={router} />);
-    await act(async () => {
-      router.navigate('/asdasd');
-    });
+    render(<RouterProvider router={badRout} />);
     expect(await screen.findByText(/Current Page: 404/i)).toBeInTheDocument();
+    screen.debug();
   });
 });
