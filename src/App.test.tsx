@@ -51,6 +51,5 @@ describe('Router', () => {
   it('Render 404 if wrong path', async () => {
     render(<RouterProvider router={badRout} />);
     expect(await screen.findByText(/Current Page: 404/i)).toBeInTheDocument();
-    screen.debug();
   });
 });
