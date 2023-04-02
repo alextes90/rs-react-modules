@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useBeforeUnload } from 'react-router-dom';
 import styles from './SearchBar.module.scss';
 import searchIcon from '../../assets/search.svg';
 
@@ -18,6 +19,10 @@ const SearchBar = () => {
       localStorage.setItem(STORAGE_KEY, valueRef.current);
     };
   }, []);
+
+  useBeforeUnload(() => {
+    localStorage.setItem(STORAGE_KEY, valueRef.current);
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(event.target.value);

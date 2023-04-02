@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from '../../interfaces/interfaces';
 import styles from './FormCard.module.scss';
 
@@ -7,7 +6,7 @@ interface FormCardProps {
 }
 
 const FormCard = ({ formData }: FormCardProps) => {
-  const { name, file, isMailing, date, gender, region } = formData;
+  const { name, isMailing, date, gender, region, file } = formData;
   return (
     <div className={styles.wrapper}>
       <div>
