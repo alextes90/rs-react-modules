@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Forms from './Forms';
 
 const file = new File(['hello'], 'hello.png', { type: 'image/png' });
+
+vi.mock('../formCard/FormCard', () => ({
+  __esModule: true,
+  default: () => <div>Hi</div>,
+}));
 
 describe('Forms', () => {
   it('Input type work', async () => {
@@ -23,7 +28,7 @@ describe('Forms', () => {
     await userEvent.type(inputName, 'react');
     await userEvent.click(submitButton);
     const errorMessage = await screen.findByText(
-      /start you name with Upper Case/i
+      /First letter have to be UpperCase/i
     );
     expect(errorMessage).toBeInTheDocument();
   });
