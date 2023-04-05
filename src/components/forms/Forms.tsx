@@ -48,10 +48,6 @@ const Forms = () => {
       setFile(null);
       setIsAdded(true);
       setIsFileErr(false);
-      setTimeout(() => {
-        setIsAdded(false);
-        reset();
-      }, 1000);
     } else setIsFileErr(true);
   };
 
@@ -60,14 +56,33 @@ const Forms = () => {
   };
 
   const onFileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
+    if (
+      event.target.files &&
+      (event.target.files[0].type === 'image/png' ||
+        event.target.files[0].type === 'image/jpeg')
+    ) {
       setFile(event.target.files[0]);
     }
   };
 
+  const dateValidation = (date: string) => {
+    const pickedDate = new Date(date);
+    const currentDay = new Date();
+    return (
+      pickedDate.getTime() < currentDay.getTime() ||
+      'Please chose the day that is not in future'
+    );
+  };
+
   return (
     <>
-      {isAdded && <Success message="Card was successfully added" />}
+      {isAdded && (
+        <Success
+          reset={reset}
+          setIsAdded={setIsAdded}
+          message="Card was successfully added"
+        />
+      )}
       <div className={styles.wrapper}>
         <form
           className={styles.form}
@@ -101,6 +116,9 @@ const Forms = () => {
               <input
                 {...register('Date of Birth', {
                   required: 'Please chose the date',
+                  validate: {
+                    isBeforeToday: dateValidation,
+                  },
                 })}
                 type="date"
               />
@@ -168,7 +186,7 @@ const Forms = () => {
               />
             </label>
             {isFileErr ? (
-              <p className={styles.error}>Please upload avatar</p>
+              <p className={styles.error}>Please upload jpg or png</p>
             ) : (
               ''
             )}

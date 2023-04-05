@@ -11,14 +11,17 @@
   top: 0px;
   transform: translateY(90px);
   animation-name: coming;
-  animation-duration: 0.7s;
+  animation-duration: 1.5s;
 }
 
 @keyframes coming {
-  from {
+  0% {
     transform: translateY(0px);
   }
-  to {
+  50% {
+    transform: translateY(90px);
+  }
+  100% {
     transform: translateY(90px);
   }
 }
