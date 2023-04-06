@@ -7,3 +7,9 @@
 .img {
   width: 70%;
 }
+
+@media screen and (min-width: 900px) {
+  .img {
+    width: 50vh;
+  }
+}

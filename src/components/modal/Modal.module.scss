@@ -42,3 +42,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media screen and (min-width: 900px) {
+  .modal {
+    width: 50%;
+  }
+}

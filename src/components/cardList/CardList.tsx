@@ -13,13 +13,7 @@ const CardList = ({ results }: CardListProps) => {
   return (
     <>
       {modalId && <Modal id={modalId} setModalId={setModalId} />}
-      <div
-        className={
-          modalId
-            ? `${styles['card-list']} ${styles.modal}`
-            : `${styles['card-list']}`
-        }
-      >
+      <div className={styles['card-list']}>
         {results.map(({ name, image, id }: RickMortyCharaterDataResult) => {
           return (
             <CardItem

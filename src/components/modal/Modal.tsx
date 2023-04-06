@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { RemoveScroll } from 'react-remove-scroll';
 import { BASE_URL } from '../../const';
 import { RickMortyCharaterDataResult } from '../../interfaces/interfaces';
 import getRequest from '../../utilities/apiRequest';
@@ -42,7 +43,7 @@ const Modal = ({ id, setModalId }: ModalProps) => {
   };
 
   return (
-    <>
+    <RemoveScroll>
       <div
         role="presentation"
         className={styles.overlay}
@@ -60,7 +61,7 @@ const Modal = ({ id, setModalId }: ModalProps) => {
         </button>
         <div>{resultToShow()}</div>
       </div>
-    </>
+    </RemoveScroll>
   );
 };
 
