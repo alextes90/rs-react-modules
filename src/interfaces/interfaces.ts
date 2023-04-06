@@ -64,4 +64,8 @@ interface Location {
   url: string;
 }
 
-export type DataFetching = 'error' | 'pending' | RickMortyCharaterDataResult[];
+export type DataFetching =
+  | 'error'
+  | 'pending'
+  | RickMortyCharaterDataResult[]
+  | 'not found';

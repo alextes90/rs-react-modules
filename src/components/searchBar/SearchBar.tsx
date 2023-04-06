@@ -22,8 +22,12 @@ const SearchBar = ({ setGetResults }: SearchBarProps) => {
       setGetResults('pending');
       try {
         const response = await getRequest(`${BASE_URL}${searchStr}`);
-        const { results } = response as RickMortyRes;
-        setGetResults(results);
+        if (response === 'failed to fetch data') {
+          setGetResults('not found');
+        } else {
+          const { results } = response as RickMortyRes;
+          setGetResults(results);
+        }
       } catch (err) {
         setGetResults('error');
       }
