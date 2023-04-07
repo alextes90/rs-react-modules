@@ -45,6 +45,7 @@ const Modal = ({ id, setModalId }: ModalProps) => {
   return (
     <RemoveScroll>
       <div
+        data-testid="overlay"
         role="presentation"
         className={styles.overlay}
         onClick={() => setModalId('')}
