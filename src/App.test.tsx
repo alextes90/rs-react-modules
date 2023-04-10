@@ -1,7 +1,6 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import userEvent from '@testing-library/user-event';
 import Header from './layouts/header/Header';
 
 const routes = [
