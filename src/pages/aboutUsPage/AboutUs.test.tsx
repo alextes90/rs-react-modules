@@ -5,7 +5,6 @@ import AboutUs from './AboutUs';
 describe('AboutUs page', () => {
   it('Renders AboutUs Page correctly', () => {
     render(<AboutUs />);
-    screen.debug();
     expect(screen.getByText(/About Us/i)).toBeInTheDocument();
   });
 });

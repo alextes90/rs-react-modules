@@ -14,9 +14,7 @@ describe('Render Main page', () => {
   it('On hit Enter it make Api call and search data = morty', async () => {
     render(<MainPage />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
-    screen.debug();
     await userEvent.type(input, 'morty{enter}');
-    screen.debug();
     const rickCard = screen.queryByText(/Character Name: Rick/i);
     expect(rickCard).not.toBeInTheDocument();
   });

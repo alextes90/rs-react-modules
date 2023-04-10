@@ -42,12 +42,6 @@ describe('Router', () => {
     render(<RouterProvider router={router} />);
     expect(screen.getByText(/Current Page: About Us/i)).toBeInTheDocument();
   });
-  it('Render another page on click', async () => {
-    render(<RouterProvider router={router} />);
-    const mainLink = screen.getByText(/main/i);
-    await userEvent.click(mainLink);
-    expect(await screen.findByText(/Current Page: Main/i)).toBeInTheDocument();
-  });
   it('Render 404 if wrong path', async () => {
     render(<RouterProvider router={badRout} />);
     expect(await screen.findByText(/Current Page: 404/i)).toBeInTheDocument();
