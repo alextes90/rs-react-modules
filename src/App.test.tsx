@@ -46,7 +46,7 @@ describe('Router', () => {
     render(<RouterProvider router={router} />);
     const mainLink = screen.getByText(/main/i);
     await userEvent.click(mainLink);
-    expect(screen.getByText(/Current Page: Main/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Current Page: Main/i)).toBeInTheDocument();
   });
   it('Render 404 if wrong path', async () => {
     render(<RouterProvider router={badRout} />);
