@@ -15,8 +15,10 @@ describe('Render Main page', () => {
     render(<MainPage />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     await userEvent.type(input, 'morty{enter}');
-    const rickCard = screen.queryByText(/Character Name: Rick/i);
+    const rickCard = screen.queryByAltText(/Rick/i);
+    const mortyCard = await screen.findByAltText(/Morty/i);
     expect(rickCard).not.toBeInTheDocument();
+    expect(mortyCard).toBeInTheDocument();
   });
   it('On not Found Render', async () => {
     render(<MainPage />);
