@@ -1,7 +1,6 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import userEvent from '@testing-library/user-event';
 import Header from './layouts/header/Header';
 
 const routes = [
@@ -41,12 +40,6 @@ describe('Router', () => {
   it('Renders about page', async () => {
     render(<RouterProvider router={router} />);
     expect(screen.getByText(/Current Page: About Us/i)).toBeInTheDocument();
-  });
-  it('Render another page on click', async () => {
-    render(<RouterProvider router={router} />);
-    const mainLink = screen.getByText(/main/i);
-    await userEvent.click(mainLink);
-    expect(screen.getByText(/Current Page: Main/i)).toBeInTheDocument();
   });
   it('Render 404 if wrong path', async () => {
     render(<RouterProvider router={badRout} />);

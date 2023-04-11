@@ -5,6 +5,15 @@
   justify-content: center;
 }
 
+.tip__wrapper {
+  display: flex;
+  justify-content: center;
+  color: $color-prime;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 14px;
+}
+
 .input {
   min-width: 320px;
   min-height: 32px;

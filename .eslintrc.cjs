@@ -33,6 +33,7 @@ module.exports = {
     'react/no-did-update-set-state': 0,
     'react/jsx-props-no-spreading': 0,
     'react/function-component-definition': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   settings: {
     react: {

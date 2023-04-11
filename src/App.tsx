@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { LINKS } from './const';
 import Header from './layouts/header/Header';

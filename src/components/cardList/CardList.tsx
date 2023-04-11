@@ -1,38 +1,32 @@
+import { useState } from 'react';
 import CardItem from '../cardItem/CardItem';
 import styles from './CardList.module.scss';
-import { Country } from '../../interfaces/interfaces';
-import COUNTRY_DATA from './data';
+import { RickMortyCharaterDataResult } from '../../interfaces/interfaces';
+import Modal from '../modal/Modal';
 
-const CardList = () => {
+interface CardListProps {
+  results: RickMortyCharaterDataResult[];
+}
+
+const CardList = ({ results }: CardListProps) => {
+  const [modalId, setModalId] = useState('');
   return (
-    <div className={styles['card-list']}>
-      {COUNTRY_DATA.map(
-        ({
-          name,
-          flags,
-          currencies,
-          capital,
-          region,
-          population,
-          area,
-          timezones,
-        }: Country) => {
+    <>
+      {modalId && <Modal id={modalId} setModalId={setModalId} />}
+      <div className={styles['card-list']}>
+        {results.map(({ name, image, id }: RickMortyCharaterDataResult) => {
           return (
             <CardItem
-              key={area}
-              flags={flags}
+              key={id}
               name={name}
-              currencies={currencies}
-              capital={capital}
-              region={region}
-              area={area}
-              population={population}
-              timezones={timezones}
+              image={image}
+              id={id}
+              setModalId={setModalId}
             />
           );
-        }
-      )}
-    </div>
+        })}
+      </div>
+    </>
   );
 };
 

@@ -4,4 +4,4 @@ export const LINKS = {
   Forms: 'forms',
 };
 
-export const SMTH = {};
+export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
