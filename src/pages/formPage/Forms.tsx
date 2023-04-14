@@ -3,8 +3,10 @@ import { useState } from 'react';
 import styles from './Forms.module.scss';
 import OPTION_DATA, { GENDER_DATA } from './formsData';
 import { Card } from '../../interfaces/interfaces';
-import FormCard from '../formCard/FormCard';
-import Success from '../snackbar/success/Success';
+import FormCard from '../../components/formCard/FormCard';
+import Success from '../../components/snackbar/success/Success';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setFormResult } from '../../redux/reducers/formReducer';
 
 interface FormValues {
   Name: string;
@@ -24,17 +26,19 @@ const Forms = () => {
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
   });
-
-  const [addedCard, setAddedCard] = useState<Card[]>([]);
   const [isAdded, setIsAdded] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isFileErr, setIsFileErr] = useState(false);
+  const dispatch = useAppDispatch();
+  const cardList = useAppSelector((state) => state.formReducer.formResult);
+
+  console.log(cardList);
+
   const onSubmit = (data: FormValues) => {
     if (file) {
       const { Name, Region, isMailReceived, gender } = data;
-      const newAddedCard = [
-        ...addedCard,
-        {
+      dispatch(
+        setFormResult({
           name: Name,
           date: data['Date of Birth'],
           region: Region,
@@ -42,9 +46,8 @@ const Forms = () => {
           gender,
           file,
           id: Date.now(),
-        },
-      ];
-      setAddedCard(newAddedCard);
+        })
+      );
       setFile(null);
       setIsAdded(true);
       setIsFileErr(false);
@@ -197,8 +200,8 @@ const Forms = () => {
         </form>
       </div>
       <div className={styles['addedCard-wrapper']}>
-        {addedCard.length > 0 ? (
-          addedCard.map((card: Card) => (
+        {cardList.length > 0 ? (
+          cardList.map((card: Card) => (
             <FormCard key={card.id} formData={card} />
           ))
         ) : (
