@@ -1,60 +1,21 @@
-import React, { SetStateAction, useCallback, useEffect, useState } from 'react';
-import { useBeforeUnload } from 'react-router-dom';
+import React, { useState } from 'react';
 import styles from './SearchBar.module.scss';
 import searchIcon from '../../assets/search.svg';
-import { DataFetching, RickMortyRes } from '../../interfaces/interfaces';
-import getRequest from '../../utilities/apiRequest';
-import { BASE_URL } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setValue } from '../../redux/reducers/searchReducer';
 
-const STORAGE_KEY = 'ATLOCAL_INPUT';
-
-interface SearchBarProps {
-  setGetResults: React.Dispatch<SetStateAction<DataFetching>>;
-}
-
-const SearchBar = ({ setGetResults }: SearchBarProps) => {
-  const value = localStorage.getItem(STORAGE_KEY);
+const SearchBar = () => {
+  const value = useAppSelector((state) => state.searchReducer.value);
   const [inputVal, setInputVal] = useState(value || '');
-
-  const getSearchData = useCallback(
-    async (searchValue: string) => {
-      const searchStr = `?name=${searchValue}`;
-      setGetResults('pending');
-      try {
-        const response = await getRequest(`${BASE_URL}${searchStr}`);
-        if (response === 'failed to fetch data') {
-          setGetResults('not found');
-        } else {
-          const { results } = response as RickMortyRes;
-          setGetResults(results);
-        }
-      } catch (err) {
-        setGetResults('error');
-      }
-    },
-    [setGetResults]
-  );
-
-  useEffect(() => {
-    (async () => {
-      getSearchData(value || '');
-    })();
-  }, [getSearchData, value]);
-
-  useBeforeUnload(() => {
-    localStorage.setItem(STORAGE_KEY, inputVal);
-  });
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(event.target.value);
   };
 
-  const onKeyDawnHandler = async (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const onKeyDawnHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      await getSearchData(inputVal);
-      localStorage.setItem(STORAGE_KEY, inputVal);
+      dispatch(setValue(inputVal));
     }
   };
 

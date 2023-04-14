@@ -1,37 +1,26 @@
-import { useState } from 'react';
 import CardList from '../../components/cardList/CardList';
 import SearchBar from '../../components/searchBar/SearchBar';
-import { DataFetching } from '../../interfaces/interfaces';
+import { useAppSelector } from '../../hooks/redux';
+import mortyApi from '../../redux/mortyService';
 import styles from './MainPage.module.scss';
 
 const MainPage = () => {
-  const [getResults, setGetResults] = useState<DataFetching>([]);
+  const inputVal = useAppSelector((state) => state.searchReducer.value);
+  const res = mortyApi.useFetchCharactersByNameQuery(inputVal);
 
   const resultToShow = () => {
-    switch (getResults) {
-      case 'error':
-        return (
-          <div className={styles['text-output']}>
-            Error occurred while fetching
-          </div>
-        );
-      case 'pending':
-        return <div className={styles['text-output']}>Loading...</div>;
-      case 'not found':
-        return (
-          <div className={styles['text-output']}>
-            There is no characters with such name. Please try another one. Rick
-            for example
-          </div>
-        );
-      default:
-        return <CardList results={getResults} />;
+    if (res.status === 'pending') {
+      return <div className={styles['text-output']}>Loading...</div>;
     }
+    if (res.status === 'rejected') {
+      return <div className={styles['text-output']}>Try another request</div>;
+    }
+    return res?.data?.results ? <CardList results={res?.data?.results} /> : '';
   };
 
   return (
     <div>
-      <SearchBar setGetResults={setGetResults} />
+      <SearchBar />
       {resultToShow()}
     </div>
   );
