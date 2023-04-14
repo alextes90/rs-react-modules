@@ -3,7 +3,7 @@ import { BASE_URL } from '../const';
 import MOCK_CARD, { MOCK_CARD_MORTY } from './MockData';
 
 const handlers = [
-  rest.get(`${BASE_URL}/${1}`, (req, res, ctx) => {
+  rest.get(`${BASE_URL}${1}`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(MOCK_CARD));
   }),
   rest.get(`${BASE_URL}`, (req, res, ctx) => {

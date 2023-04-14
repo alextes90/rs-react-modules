@@ -1,9 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
-import { BASE_URL } from '../../const';
-import { RickMortyCharaterDataResult } from '../../interfaces/interfaces';
 import mortyApi from '../../redux/mortyService';
-import getRequest from '../../utilities/apiRequest';
 import ModalContent from '../modalContent/ModalContent';
 import styles from './Modal.module.scss';
 
@@ -32,9 +29,7 @@ const Modal = ({ id, setModalId }: ModalProps) => {
         role="presentation"
         className={styles.overlay}
         onClick={() => setModalId('')}
-      >
-        {' '}
-      </div>
+      />
       <div className={styles.modal}>
         <button
           onClick={() => setModalId('')}

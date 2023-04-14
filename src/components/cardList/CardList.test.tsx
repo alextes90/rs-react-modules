@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it } from 'vitest';
 import MOCK_CARD from '../../mock/MockData';
+import renderWithProviders from '../../utilities/test-utils';
 import CardList from './CardList';
 
 const cardListResults = [MOCK_CARD];
@@ -13,7 +14,7 @@ describe('Rendering Card List', () => {
     expect(items).toHaveLength(1);
   });
   it('Open Modal and close Modal', async () => {
-    render(<CardList results={cardListResults} />);
+    renderWithProviders(<CardList results={cardListResults} />);
     const item = screen.getByText(/name/i);
     await userEvent.click(item);
     const modal = screen.getByText(/Status: status/i);
