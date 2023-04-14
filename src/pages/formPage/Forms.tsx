@@ -32,8 +32,6 @@ const Forms = () => {
   const dispatch = useAppDispatch();
   const cardList = useAppSelector((state) => state.formReducer.formResult);
 
-  console.log(cardList);
-
   const onSubmit = (data: FormValues) => {
     if (file) {
       const { Name, Region, isMailReceived, gender } = data;

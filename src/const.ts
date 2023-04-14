@@ -5,3 +5,5 @@ export const LINKS = {
 };
 
 export const BASE_URL = 'https://rickandmortyapi.com/api/character/';
+
+export const BASE_URL_QUERY = 'https://rickandmortyapi.com/api';
