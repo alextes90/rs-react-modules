@@ -35,6 +35,8 @@ module.exports = {
     'react/function-component-definition': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'no-param-reassign': 0,
+    'no-underscore-dangle': 0,
+    'import/extensions': 0,
   },
   settings: {
     react: {
@@ -42,5 +44,12 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['.eslintrc.cjs', 'dist', 'vite.config.ts', 'coverage'],
+  ignorePatterns: [
+    '.eslintrc.cjs',
+    'dist',
+    'vite.config.ts',
+    'coverage',
+    'server',
+    'src/entry-server.tsx',
+  ],
 };

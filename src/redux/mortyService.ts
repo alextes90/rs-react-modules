@@ -1,9 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import * as ToolkitRaw from '@reduxjs/toolkit/dist/query/react/index.js';
 import { BASE_URL_QUERY } from '../const';
 import {
   RickMortyCharaterDataResult,
   RickMortyRes,
 } from '../interfaces/interfaces';
+import createApi from './createApi';
+
+type TypeQuery = typeof ToolkitRaw & { default?: unknown };
+const { fetchBaseQuery } = ((ToolkitRaw as TypeQuery).default ??
+  ToolkitRaw) as typeof ToolkitRaw;
 
 const mortyApi = createApi({
   reducerPath: 'mortyApi',

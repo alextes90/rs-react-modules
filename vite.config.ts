@@ -7,7 +7,7 @@ import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), eslint()],
+  plugins: [react({ fastRefresh: false }), eslint()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -15,6 +15,15 @@ export default defineConfig({
     coverage: {
       provider: 'c8',
       all: true,
+      include: ['src'],
+      exclude: [
+        '**/App.tsx',
+        '**/main.tsx',
+        '**/entry-server.tsx',
+        '**/AppRoutes.tsx',
+        '**/interfaces.ts',
+        '**/store.ts',
+      ],
     },
   },
 });

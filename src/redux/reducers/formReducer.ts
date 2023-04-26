@@ -1,5 +1,10 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+import * as toolkitRaw from '@reduxjs/toolkit';
 import { Card } from '../../interfaces/interfaces';
+
+type TypeToolkitRaw = typeof toolkitRaw & { default?: unknown };
+const { createSlice } = ((toolkitRaw as TypeToolkitRaw).default ??
+  toolkitRaw) as typeof toolkitRaw;
 
 interface FormResult {
   formResult: Card[];

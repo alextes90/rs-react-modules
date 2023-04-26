@@ -1,38 +1,26 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { LINKS } from './const';
-import Header from './layouts/header/Header';
-import AboutUs from './pages/aboutUsPage/AboutUs';
-import ErrorPage from './pages/errorPage/ErrorPage';
-import MainPage from './pages/mainPage/MainPage';
-import Forms from './pages/formPage/Forms';
+import { PreloadedState } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
+import { RootState, setupStore } from './redux/store';
 
-const router = createBrowserRouter([
-  {
-    path: LINKS.Main,
-    element: <Header />,
-    children: [
-      {
-        path: '',
-        element: <MainPage />,
-      },
-      {
-        path: LINKS['About Us'],
-        element: <AboutUs />,
-      },
-      {
-        path: LINKS.Forms,
-        element: <Forms />,
-      },
-      {
-        path: '*',
-        element: <ErrorPage />,
-      },
-    ],
-  },
-]);
+declare global {
+  interface Window {
+    __PRELOADED_STATE__?: PreloadedState<RootState>;
+  }
+}
 
-const App = () => {
-  return <RouterProvider router={router} />;
-};
+const store = setupStore(window.__PRELOADED_STATE__);
+delete window.__PRELOADED_STATE__;
+
+function App() {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </Provider>
+  );
+}
 
 export default App;
