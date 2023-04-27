@@ -14,6 +14,7 @@ interface AssetMap {
 }
 
 async function render(req: Request, res: Response, assetMap: AssetMap) {
+  store.dispatch(mortyApi.endpoints.fetchCharactersByName.initiate(''));
   await Promise.all(store.dispatch(mortyApi.util.getRunningQueriesThunk()));
   const preloadedState = store.getState();
 

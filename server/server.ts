@@ -8,16 +8,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = 3001;
 const isProd = process.env.NODE_ENV === 'production';
-const resolve = (p: string) => path.resolve(__dirname, p);
+const resolve = (str: string) => path.resolve(__dirname, str);
 const app = express();
-
-console.log(isProd);
-const root = process.cwd();
 
 const vite = isProd
   ? null
   : await createServer({
-      root,
       appType: 'custom',
       server: {
         middlewareMode: true,
