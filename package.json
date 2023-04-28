@@ -14,7 +14,9 @@
     "coverage": "vitest run --coverage",
     "start-prod": "set \"NODE_ENV=production\" && ts-node-esm server/server.ts",
     "start": "ts-node-esm server/server.ts",
-    "dev": "nodemon server/server.ts"
+    "dev": "nodemon server/server.ts",
+    "cy:run": "cypress run",
+    "cypress": "start-server-and-test start http://localhost:3001 cy:run"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -26,9 +28,11 @@
     "react-redux": "^8.0.5",
     "react-remove-scroll": "^2.5.5",
     "react-router-dom": "^6.9.0",
+    "start-server-and-test": "^2.0.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -40,6 +44,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.3",
     "@vitest/coverage-istanbul": "^0.29.3",
+    "cypress": "^12.11.0",
     "eslint": "^8.36.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",

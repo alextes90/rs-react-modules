@@ -51,5 +51,7 @@ module.exports = {
     'coverage',
     'server',
     'src/entry-server.tsx',
+    'cypress',
+    'cypress.config.ts',
   ],
 };
