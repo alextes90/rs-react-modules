@@ -16,8 +16,9 @@
     "start": "ts-node-esm server/server.ts",
     "dev": "nodemon server/server.ts",
     "cy:run": "cypress run",
-    "cypress": "start-server-and-test start http://localhost:3001 cy:run && nyc",
-    "nyc": "npx nyc report --reporter=text-summary"
+    "cypress": "start-server-and-test start http://localhost:3001 cy:run && npm run nyc:report && npm run nyc:summary",
+    "nyc:report": "nyc report",
+    "nyc:summary": "nyc report --reporter=text-summary"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
