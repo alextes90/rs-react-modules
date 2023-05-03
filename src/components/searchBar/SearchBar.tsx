@@ -6,7 +6,7 @@ import { setValue } from '../../redux/reducers/searchReducer';
 
 const SearchBar = () => {
   const value = useAppSelector((state) => state.searchReducer.value);
-  const [inputVal, setInputVal] = useState(value || '');
+  const [inputVal, setInputVal] = useState(value);
   const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
