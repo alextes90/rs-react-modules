@@ -1,0 +1,38 @@
+@import '../../index.scss';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.tip__wrapper {
+  display: flex;
+  justify-content: center;
+  color: $color-prime;
+  margin-top: 0.5rem;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.input {
+  min-width: 320px;
+  min-height: 32px;
+  font-size: 24px;
+  padding: 8px;
+  color: $color-prime;
+  border: $color-prime solid 2px;
+  border-radius: 1rem;
+  &:focus {
+    outline: none;
+    border: $color-hover solid 2px;
+  }
+  &::placeholder {
+    color: $color-prime;
+    opacity: 0.5;
+  }
+}
+
+.img {
+  width: 3rem;
+  padding: 0.5rem;
+}

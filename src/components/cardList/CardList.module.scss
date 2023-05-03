@@ -1,0 +1,27 @@
+.loading {
+  text-align: center;
+  padding: 2rem;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.card-item {
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1100px) {
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
